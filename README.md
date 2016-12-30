@@ -8,8 +8,7 @@
 Provides [Devise](https://github.com/plataformatec/devise) integration with
 the [Pragma](https://github.com/pragmarb/pragma) architecture.
 
-It gives you Pragma resources for user accounts, password recovery requests and confirmation
-requests.
+It gives you Pragma resources for Devise::Registerable, Devise::Confirmable and Devise::Recoverable.
 
 It also adds [JWT](https://jwt.io) support to your application through the
 [Knock](https://github.com/nsarno/knock) gem.
