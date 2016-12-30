@@ -15,6 +15,7 @@ AllCops:
    - 'config/**/*'
    - '**/Rakefile'
    - '**/Gemfile'
+   - 'spec/dummy/**/*'
 
 Rails:
   Enabled: true
@@ -88,3 +89,7 @@ Metrics/CyclomaticComplexity:
 
 Metrics/ClassLength:
   Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'app/**/*'

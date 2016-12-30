@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Pragma
   module Devise
-    class RecoveriesController < ApplicationController
+    class TokensController < ApplicationController
       include Pragma::Rails::ResourceController
     end
   end
