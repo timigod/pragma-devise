@@ -3,7 +3,7 @@ RSpec.describe '/confirmations' do
   include Pragma::Devise::Engine.routes.url_helpers
 
   describe 'POST /' do
-    subject { -> { post confirmations_path, params: body.to_json } }
+    subject { -> { post confirmations_path, body.to_json } }
 
     context 'when the email is valid' do
       let(:user) { create(:user, confirmed_at: nil) }

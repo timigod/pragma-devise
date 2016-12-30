@@ -3,7 +3,7 @@ RSpec.describe '/recoveries' do
   include Pragma::Devise::Engine.routes.url_helpers
 
   describe 'POST /' do
-    subject { -> { post recoveries_path, params: body.to_json } }
+    subject { -> { post recoveries_path, body.to_json } }
 
     context 'when the email is valid' do
       let(:user) { create(:user) }
@@ -44,7 +44,7 @@ RSpec.describe '/recoveries' do
   end
 
   describe 'POST /:id/complete' do
-    subject { -> { post complete_recovery_path(id: recovery_token), params: body.to_json } }
+    subject { -> { post complete_recovery_path(id: recovery_token), body.to_json } }
 
     context 'when the recovery token is valid and a password is provided' do
       let(:user) { create(:user) }
