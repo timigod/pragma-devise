@@ -7,7 +7,7 @@ module Pragma
           property :email
 
           validation do
-            required(:email).filled
+            required(:email).filled(format?: /\A[^@\s]+@[^@\s]+\z/)
           end
         end
       end
