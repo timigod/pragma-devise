@@ -5,8 +5,14 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/pragmarb/pragma-devise.svg?maxAge=3600&style=flat-square)](https://codeclimate.com/github/pragmarb/pragma-devise)
 [![Coveralls](https://img.shields.io/coveralls/pragmarb/pragma-devise.svg?maxAge=3600&style=flat-square)](https://coveralls.io/github/pragmarb/pragma-devise)
 
-Provides [Devise](https://github.com/plataformatec/devise) integration with the
-[Pragma](https://github.com/pragmarb/pragma) architecture.
+Provides [Devise](https://github.com/plataformatec/devise) integration with
+the [Pragma](https://github.com/pragmarb/pragma) architecture.
+
+It gives you Pragma resources for user accounts, password recovery requests and confirmation
+requests.
+
+It also adds [JWT](https://jwt.io) support to your application through the
+[Knock](https://github.com/nsarno/knock) gem.
 
 ## Installation
 
