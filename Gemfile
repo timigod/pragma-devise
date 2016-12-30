@@ -10,5 +10,7 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
+gem 'capybara'
+gem 'factory_girl_rails'
+gem 'database_cleaner'
+gem 'faker'
