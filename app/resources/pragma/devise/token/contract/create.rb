@@ -8,7 +8,7 @@ module Pragma
           property :password
 
           validation do
-            required(:email).filled(format?: Devise.email_regexp)
+            required(:email).filled(format?: /\A[^@\s]+@[^@\s]+\z/)
             required(:password).filled
           end
         end
