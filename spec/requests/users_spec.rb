@@ -2,6 +2,20 @@
 RSpec.describe '/users' do
   include Pragma::Devise::Engine.routes.url_helpers
 
+  describe 'GET /current' do
+    subject { -> { get user_path(id: 'current') } }
+
+    it 'responds with 200 OK' do
+      subject.call
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'responds with the user' do
+      subject.call
+      expect(parsed_response['email']).to eq(current_user.email)
+    end
+  end
+
   describe 'POST /' do
     subject { -> { post users_path, body.to_json } }
 

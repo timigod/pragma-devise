@@ -6,6 +6,7 @@ require 'pragma/rails'
 
 require 'pragma/devise/operation/defaults'
 require 'pragma/devise/engine'
+require 'pragma/devise/test/helper'
 
 module Pragma
   # Devise integration for the Pragma architecture.

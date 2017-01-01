@@ -117,6 +117,28 @@ module API
 end
 ```
 
+## Testing
+
+Test helpers are provided to easily authenticate in tests. To use them, include `Pragma::Devise::Test::Helper`
+in your test or - the preferred method - in your RSpec configuration:
+
+```ruby
+RSpec.configure do |config|
+  config.include Pragma::Devise::Test::Helper
+end
+```
+
+Now you can use the `#authenticate_as` helper to authenticate in tests:
+
+```ruby
+RSpec.describe '/api/v1/posts' do
+  let(:current_user) { create(:user) }
+  before { authenticate_as current_user }
+
+  # ...
+end
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/pragmarb/pragma-devise.
