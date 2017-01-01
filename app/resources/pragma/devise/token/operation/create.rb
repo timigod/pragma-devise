@@ -4,10 +4,12 @@ module Pragma
     module Token
       module Operation
         class Create < Pragma::Operation::Base
+          include Pragma::Devise::Operation::Defaults
+
           def call
             validate! OpenStruct.new
 
-            user = ::User.find_for_authentication(email: params[:email])
+            user = self.class.model_klass.find_for_authentication(email: params[:email])
 
             unless user && user.valid_password?(params[:password])
               respond_with!(

@@ -4,10 +4,10 @@ module Pragma
     module Recovery
       module Operation
         class Complete < Pragma::Operation::Base
-          include Pragma::Operation::Defaults
+          include Pragma::Devise::Operation::Defaults
 
           def call
-            user = ::User.reset_password_by_token(
+            user = self.class.model_klass.reset_password_by_token(
               reset_password_token: params[:id],
               password: params[:password],
               password_confirmation: params[:password]

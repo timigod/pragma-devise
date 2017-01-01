@@ -4,6 +4,7 @@ module Pragma
     module User
       module Operation
         class Create < Pragma::Operation::Create
+          include Pragma::Devise::Operation::Defaults
         end
       end
     end

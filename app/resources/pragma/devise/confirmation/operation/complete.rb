@@ -4,10 +4,10 @@ module Pragma
     module Confirmation
       module Operation
         class Complete < Pragma::Operation::Base
-          include Pragma::Operation::Defaults
+          include Pragma::Devise::Operation::Defaults
 
           def call
-            user = ::User.confirm_by_token(params[:id])
+            user = self.class.model_klass.confirm_by_token(params[:id])
 
             respond_with_validation_errors!(user) if user.errors.any?
 
