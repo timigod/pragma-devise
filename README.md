@@ -36,8 +36,8 @@ $ gem install pragma-devise
 ```
 
 Next, you should configure [Devise](https://github.com/plataformatec/devise) and
-[Knock](https://github.com/nsarno/knock), but skip the generation of any routes and controllers:
-that's where Pragma::Devise comes in!
+[Knock](https://github.com/nsarno/knock) as usual, but skip the generation of any routes and
+controllers: that's where this gem comes in!
 
 Now, to use the engine, simply mount it in your `routes.rb`:
 
@@ -45,7 +45,20 @@ Now, to use the engine, simply mount it in your `routes.rb`:
 mount Pragma::Devise::Engine => '/'
 ```
 
-## Usage
+## Configuration
+
+By default, the gem will use `User` as the user model and `ApplicationController` as your base
+controller. If those are not the right classes, you can change them by creating an initializer
+(e.g. `config/initializers/pragma_devise.rb`):
+
+```ruby
+Pragma::Devise.configure do |config|
+  config.user_model = '::AdminUser'
+  config.base_controller = '::ApiController'
+end
+```
+
+## Routes
 
 Here are the routes provided by the engine:
 
@@ -61,27 +74,50 @@ complete_confirmation POST /confirmations/:id/complete(.:format) pragma/devise/c
 For more information on what each one does, you should have a look at the respective resources
 and operations in [app/resources/pragma/devise](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise).
 
-### Authenticating users
+## Usage
 
-Pragma::Devise does not configure Devise or Knock, as noted in the "Installation" section: you'll
-have to do that yourself.
-
-After you have configured Knock, you can authenticate users by including `Knock::Authenticable`
-in your controller and calling the `#authenticate_user!` filter, as you'd usually do with a regular
-Knock setup:
+After you have configured the gem, you can authenticate users by including `Pragma::Devise::Authenticable`
+in your operations and installing the `#authenticate_user` before hook, which will try to
+authenticate or respond with 401 Unauthorized and an error payload:
 
 ```ruby
 module API
   module V1
-    class ApplicationController < ::ApplicationController
-      include Knock::Authenticable
-      before_action :authenticate_user!
+    module Post
+      module Operation
+        class Create < Pragma::Operation::Create
+          include Pragma::Devise::Authenticable
+          before :authenticate_user
+        end
+      end
     end
   end
 end
 ```
 
-You can retrieve the current user through the `#current_user` helper in controllers and operations.
+If you want to customize how you respond, you can make your own hook with the help of
+`#current_user` (which is what `#authenticate_user` uses under the hood):
+
+```ruby
+module API
+  module V1
+    module Post
+      module Operation
+        class Create < Pragma::Operation::Create
+          include Pragma::Devise::Authenticable
+          before :custom_authenticate_user
+
+          private
+
+          def custom_authenticate_user
+            head! :unauthorized unless current_user
+          end
+        end
+      end
+    end
+  end
+end
+```
 
 ## Contributing
 
