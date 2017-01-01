@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Pragma
   module Devise
-    class Engine < ::Rails::Engine
+    class Engine < ::Rails::Engine # :nodoc:
       isolate_namespace Pragma::Devise
 
       config.to_prepare do
