@@ -45,8 +45,6 @@ Now, to use the engine, simply mount it in your `routes.rb`:
 mount Pragma::Devise::Engine => '/'
 ```
 
-## Configuration
-
 By default, the gem will use `User` as the user model and `ApplicationController` as your base
 controller. If those are not the right classes, you can change them by creating an initializer
 (e.g. `config/initializers/pragma_devise.rb`):
