@@ -18,6 +18,8 @@ It also adds [JWT](https://jwt.io) support to your application through the
 Add this line to your application's Gemfile:
 
 ```ruby
+gem 'devise'
+gem 'knock'
 gem 'pragma-devise'
 ```
 
@@ -33,6 +35,10 @@ Or install it yourself as:
 $ gem install pragma-devise
 ```
 
+Next, you should configure [Devise](https://github.com/plataformatec/devise) and
+[Knock](https://github.com/nsarno/knock), but skip the generation of any routes and controllers:
+that's where Pragma::Devise comes in!
+
 ## Usage
 
 To use the engine, simply mount it in your `routes.rb`:
@@ -41,8 +47,19 @@ To use the engine, simply mount it in your `routes.rb`:
 mount Pragma::Devise::Engine => '/'
 ```
 
-Have a look at the [resources](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise)
-for more information on what we provide.
+Here are the routes provided by the engine:
+
+```console
+               tokens POST /tokens(.:format)                     pragma/devise/tokens#create
+                users POST /users(.:format)                      pragma/devise/users#create
+complete_confirmation POST /confirmations/:id/complete(.:format) pragma/devise/confirmations#complete
+        confirmations POST /confirmations(.:format)              pragma/devise/confirmations#create
+    complete_recovery POST /recoveries/:id/complete(.:format)    pragma/devise/recoveries#complete
+           recoveries POST /recoveries(.:format)                 pragma/devise/recoveries#create
+```
+
+For more information on what each one does, you should have a look at the respective resources
+and operations in [app/resources/pragma/devise](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise).
 
 ## Contributing
 
