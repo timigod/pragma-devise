@@ -39,13 +39,13 @@ Next, you should configure [Devise](https://github.com/plataformatec/devise) and
 [Knock](https://github.com/nsarno/knock), but skip the generation of any routes and controllers:
 that's where Pragma::Devise comes in!
 
-## Usage
-
-To use the engine, simply mount it in your `routes.rb`:
+Now, to use the engine, simply mount it in your `routes.rb`:
 
 ```ruby
 mount Pragma::Devise::Engine => '/'
 ```
+
+## Usage
 
 Here are the routes provided by the engine:
 
@@ -60,6 +60,28 @@ complete_confirmation POST /confirmations/:id/complete(.:format) pragma/devise/c
 
 For more information on what each one does, you should have a look at the respective resources
 and operations in [app/resources/pragma/devise](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise).
+
+### Authenticating users
+
+Pragma::Devise does not configure Devise or Knock, as noted in the "Installation" section: you'll
+have to do that yourself.
+
+After you have configured Knock, you can authenticate users by including `Knock::Authenticable`
+in your controller and calling the `#authenticate_user!` filter, as you'd usually do with a regular
+Knock setup:
+
+```ruby
+module API
+  module V1
+    class ApplicationController < ::ApplicationController
+      include Knock::Authenticable
+      before_action :authenticate_user!
+    end
+  end
+end
+```
+
+You can retrieve the current user through the `#current_user` helper in controllers and operations.
 
 ## Contributing
 
