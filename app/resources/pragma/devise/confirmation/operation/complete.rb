@@ -7,7 +7,7 @@ module Pragma
           include Pragma::Operation::Defaults
 
           def call
-            user = User.confirm_by_token(params[:id])
+            user = ::User.confirm_by_token(params[:id])
 
             respond_with_validation_errors!(user) if user.errors.any?
 

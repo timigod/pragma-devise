@@ -7,7 +7,7 @@ module Pragma
           def call
             validate! OpenStruct.new
 
-            user = User.find_for_authentication(email: params[:email])
+            user = ::User.find_for_authentication(email: params[:email])
 
             unless user && user.valid_password?(params[:password])
               respond_with!(

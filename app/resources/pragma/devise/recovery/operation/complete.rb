@@ -7,7 +7,7 @@ module Pragma
           include Pragma::Operation::Defaults
 
           def call
-            user = User.reset_password_by_token(
+            user = ::User.reset_password_by_token(
               reset_password_token: params[:id],
               password: params[:password],
               password_confirmation: params[:password]

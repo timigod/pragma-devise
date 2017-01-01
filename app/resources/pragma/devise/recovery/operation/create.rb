@@ -9,7 +9,7 @@ module Pragma
           def call
             validate! OpenStruct.new
 
-            User.send_reset_password_instructions(email: params[:email])
+            ::User.send_reset_password_instructions(email: params[:email])
 
             head :no_content
           end
