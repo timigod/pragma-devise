@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require 'devise'
 require 'knock'
+require 'devise'
 
 require 'pragma/rails'
 

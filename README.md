@@ -13,13 +13,35 @@ It gives you Pragma resources for Devise::Registerable, Devise::Confirmable and 
 It also adds [JWT](https://jwt.io) support to your application through the
 [Knock](https://github.com/nsarno/knock) gem.
 
-## Installation
+## Installing Devise and Knock
+
+Add these lines to your application's Gemfile:
+
+```ruby
+gem 'devise'
+gem 'knock', github: 'alessandro1997/knock', branch: 'specific-rescue'
+```
+
+Next, follow the installation instructions for [Devise](https://github.com/plataformatec/devise) and
+[Knock](https://github.com/nsarno/knock).
+
+For Devise, make sure to skip the generation of any routes:
+
+```ruby
+devise_for :uers, skip: :all
+```
+
+**NOTE:** By default, Devise will try to link to your backend for the confirmation and password
+reset pages. Since we have skipped the generation of all routes, this means that the mailers will
+crash. What you should do instead is create your own mailer views (you can edit the ones generated
+by `rails g devise:views`) and link to URLs on your frontend instead. These URLs will call the
+backend and complete the user confirmation and password reset processes.
+
+## Installing Pragma::Devise
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'devise'
-gem 'knock'
 gem 'pragma-devise'
 ```
 
@@ -34,10 +56,6 @@ Or install it yourself as:
 ```console
 $ gem install pragma-devise
 ```
-
-Next, you should configure [Devise](https://github.com/plataformatec/devise) and
-[Knock](https://github.com/nsarno/knock) as usual, but skip the generation of any routes and
-controllers: that's where this gem comes in!
 
 Now, to use the engine, simply mount it in your `routes.rb`:
 
@@ -55,22 +73,6 @@ Pragma::Devise.configure do |config|
   config.base_controller = '::ApiController'
 end
 ```
-
-## Routes
-
-Here are the routes provided by the engine:
-
-```console
-               tokens POST /tokens(.:format)                     pragma/devise/tokens#create
-                users POST /users(.:format)                      pragma/devise/users#create
-complete_confirmation POST /confirmations/:id/complete(.:format) pragma/devise/confirmations#complete
-        confirmations POST /confirmations(.:format)              pragma/devise/confirmations#create
-    complete_recovery POST /recoveries/:id/complete(.:format)    pragma/devise/recoveries#complete
-           recoveries POST /recoveries(.:format)                 pragma/devise/recoveries#create
-```
-
-For more information on what each one does, you should have a look at the respective resources
-and operations in [app/resources/pragma/devise](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise).
 
 ## Usage
 
@@ -119,8 +121,8 @@ end
 
 ## Testing
 
-Test helpers are provided to easily authenticate in tests. To use them, include `Pragma::Devise::Test::Helper`
-in your test or - the preferred method - in your RSpec configuration:
+Test helpers are provided to easily authenticate in tests. To use them, include
+`Pragma::Devise::Test::Helper` in your RSpec configuration:
 
 ```ruby
 RSpec.configure do |config|

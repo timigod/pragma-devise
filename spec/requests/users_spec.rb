@@ -5,6 +5,9 @@ RSpec.describe '/users' do
   describe 'GET /current' do
     subject { -> { get user_path(id: 'current') } }
 
+    let(:current_user) { create(:user) }
+    before { authenticate_as current_user }
+
     it 'responds with 200 OK' do
       subject.call
       expect(last_response.status).to eq(200)

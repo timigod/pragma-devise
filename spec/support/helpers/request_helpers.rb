@@ -1,10 +1,12 @@
 module RequestHelpers
   def self.included(klass)
-    klass.extend ClassMethods
+    klass.include InstanceMethods
   end
 
-  def parsed_response
-    @parsed_response ||= JSON.parse(last_response.body)
+  module InstanceMethods
+    def parsed_response
+      @parsed_response ||= JSON.parse(last_response.body)
+    end
   end
 end
 

@@ -6,9 +6,9 @@ module Pragma
 
       protected
 
-      def pragma_params
+      def operation_params
         params.tap do |p|
-          p[:id] = current_user&.id if p[:id] == 'current'
+          p[:id] = operation_user&.id if p[:id] == 'current'
         end
       end
     end
