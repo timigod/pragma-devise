@@ -13,7 +13,9 @@ It gives you Pragma resources for Devise::Registerable, Devise::Confirmable and 
 It also adds [JWT](https://jwt.io) support to your application through the
 [Knock](https://github.com/nsarno/knock) gem.
 
-## Installing Devise and Knock
+## Installation
+
+### Devise and Knock
 
 Add these lines to your application's Gemfile:
 
@@ -37,7 +39,7 @@ crash. What you should do instead is create your own mailer views (you can edit 
 by `rails g devise:views`) and link to URLs on your frontend instead. These URLs will call the
 backend and complete the user confirmation and password reset processes.
 
-## Installing Pragma::Devise
+### Pragma::Devise
 
 Add this line to your application's Gemfile:
 
