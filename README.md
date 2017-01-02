@@ -88,9 +88,10 @@ end
 
 ## Usage
 
-After you have configured the gem, you can authenticate users by including `Pragma::Devise::Authenticable`
-in your operations and installing the `#authenticate_user` before hook, which will try to
-authenticate or respond with 401 Unauthorized and an error payload:
+After you have configured the gem, you can authenticate users by including
+`Pragma::Devise::Operation::Authenticable` in your operations and installing the
+`#authenticate_user` before hook, which will try to authenticate or respond with 401 Unauthorized
+and an error payload:
 
 ```ruby
 module API

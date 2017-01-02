@@ -5,6 +5,7 @@ require 'devise'
 require 'pragma/rails'
 
 require 'pragma/devise/operation/defaults'
+require 'pragma/devise/operation/authenticable'
 require 'pragma/devise/engine'
 require 'pragma/devise/test/helper'
 
