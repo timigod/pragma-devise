@@ -167,7 +167,7 @@ GEM
     pragma-decorator (0.1.0)
       multi_json (~> 1.12)
       roar (~> 1.0)
-    pragma-operation (1.3.0)
+    pragma-operation (1.3.1)
       interactor (~> 3.1.0)
     pragma-policy (0.1.0)
     pragma-rails (0.1.2)
