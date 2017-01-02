@@ -15,19 +15,16 @@ It also adds [JWT](https://jwt.io) support to your application through the
 
 ## Installation
 
-### Devise and Knock
+### Devise
 
-Add these lines to your application's Gemfile:
+Add this line to your application's Gemfile:
 
 ```ruby
 gem 'devise'
-gem 'knock', github: 'alessandro1997/knock', branch: 'specific-rescue'
 ```
 
-Next, follow the installation instructions for [Devise](https://github.com/plataformatec/devise) and
-[Knock](https://github.com/nsarno/knock).
-
-For Devise, make sure to skip the generation of any routes:
+Next, follow the [Devise installation instructions](https://github.com/plataformatec/devise), but
+make sure to skip the generation of any routes:
 
 ```ruby
 devise_for :uers, skip: :all
@@ -38,6 +35,19 @@ reset pages. Since we have skipped the generation of all routes, this means that
 crash. What you should do instead is create your own mailer views (you can edit the ones generated
 by `rails g devise:views`) and link to URLs on your frontend instead. These URLs will call the
 backend and complete the user confirmation and password reset processes.
+
+### Knock
+
+Add this line to your application's Gemfile (the fork is required until Knock approves
+[our PR](https://github.com/nsarno/knock/pull/133)):
+
+```ruby
+gem 'knock', github: 'alessandro1997/knock', branch: 'specific-rescue'
+```
+
+Next, follow the [Knock installation instructions](https://github.com/plataformatec/devise). You
+don't need to include `Knock::Authenticable` in your controller: it will be done for you by the
+engine.
 
 ### Pragma::Devise
 
