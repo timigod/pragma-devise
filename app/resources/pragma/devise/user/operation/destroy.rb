@@ -6,6 +6,7 @@ module Pragma
         class Destroy < Pragma::Operation::Destroy
           include Pragma::Devise::Operation::Defaults
           include Pragma::Devise::Operation::Authenticable
+          include Pragma::Devise::User::Operation::Defaults
 
           before :authenticate_user
         end

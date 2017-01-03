@@ -6,6 +6,7 @@ module Pragma
         class Update < Pragma::Operation::Update
           include Pragma::Devise::Operation::Defaults
           include Pragma::Devise::Operation::Authenticable
+          include Pragma::Devise::User::Operation::Defaults
 
           before :authenticate_user
         end

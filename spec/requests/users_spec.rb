@@ -34,6 +34,11 @@ RSpec.describe '/users' do
       subject.call
       expect(parsed_response['email']).to eq(current_user.email)
     end
+
+    it "uses the application's decorator" do
+      subject.call
+      expect(parsed_response['full_name']).to eq('John Doe')
+    end
   end
 
   describe 'GET /:id' do

@@ -19,10 +19,14 @@ module Pragma
     #
     # @!attribute [rw] user_model
     #   @return [String] the application's user model
-    mattr_accessor :base_controller, :user_model
+    #
+    # @!attribute [rw] user_decorator
+    #   @return [String] the decorator to use for users
+    mattr_accessor :base_controller, :user_model, :user_decorator
 
     self.base_controller = '::ApplicationController'
     self.user_model = '::User'
+    self.user_decorator = '::Pragma::Devise::User::Decorator'
 
     class << self
       # Yields the module for configuration.

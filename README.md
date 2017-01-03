@@ -75,14 +75,14 @@ Now, to use the engine, simply mount it in your `routes.rb`:
 mount Pragma::Devise::Engine => '/'
 ```
 
-By default, the gem will use `User` as the user model and `ApplicationController` as your base
-controller. If those are not the right classes, you can change them by creating an initializer
-(e.g. `config/initializers/pragma_devise.rb`):
+If you want to override any of the gem's defaults, you can change them by creating an initializer
+(e.g. `config/initializers/pragma_devise.rb`). Here are the defaults:
 
 ```ruby
 Pragma::Devise.configure do |config|
-  config.user_model = '::AdminUser'
-  config.base_controller = '::ApiController'
+  config.user_model = '::User'
+  config.user_decorator = '::Pragma::Devise::User::Decorator'
+  config.base_controller = '::ApplicationController'
 end
 ```
 
