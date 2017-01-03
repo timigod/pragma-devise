@@ -3,7 +3,7 @@ module Pragma
   module Devise
     module Recovery
       module Operation
-        class Complete < Pragma::Operation::Base
+        class Update < Pragma::Operation::Base
           include Pragma::Devise::Operation::Defaults
 
           def call

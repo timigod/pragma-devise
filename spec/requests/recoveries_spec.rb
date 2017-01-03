@@ -43,8 +43,8 @@ RSpec.describe '/recoveries' do
     end
   end
 
-  describe 'POST /:id/complete' do
-    subject { -> { post complete_recovery_path(id: recovery_token), body.to_json } }
+  describe 'PUT /:id' do
+    subject { -> { put recovery_path(id: recovery_token), body.to_json } }
 
     context 'when the recovery token is valid and a password is provided' do
       let(:user) { create(:user) }

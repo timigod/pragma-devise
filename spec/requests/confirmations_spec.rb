@@ -43,8 +43,8 @@ RSpec.describe '/confirmations' do
     end
   end
 
-  describe 'POST /:id/complete' do
-    subject { -> { post complete_confirmation_path(id: confirmation_token) } }
+  describe 'PUT /:id' do
+    subject { -> { put confirmation_path(id: confirmation_token) } }
 
     context 'when the confirmation token is valid' do
       let(:user) { create(:user, confirmed_at: nil) }
