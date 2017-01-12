@@ -83,6 +83,10 @@ Pragma::Devise.configure do |config|
   config.user_model = '::User'
   config.user_decorator = '::Pragma::Devise::User::Decorator'
   config.base_controller = '::ApplicationController'
+  config.user_contracts = {
+    create: '::Pragma::Devise::User::Contract::Create',
+    update: '::Pragma::Devise::User::Contract::Update'
+  }
 end
 ```
 

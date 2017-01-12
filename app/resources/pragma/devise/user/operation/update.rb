@@ -9,6 +9,8 @@ module Pragma
           include Pragma::Devise::User::Operation::Defaults
 
           before :authenticate_user
+
+          contract Pragma::Devise.user_contracts[:update].to_s.constantize
         end
       end
     end

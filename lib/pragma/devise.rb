@@ -22,11 +22,18 @@ module Pragma
     #
     # @!attribute [rw] user_decorator
     #   @return [String] the decorator to use for users
-    mattr_accessor :base_controller, :user_model, :user_decorator
+    #
+    # @!attribute [rw] user_contracts
+    #   @return [Hash<Symbol,String>] the contracts to use for users (operation -> class)
+    mattr_accessor :base_controller, :user_model, :user_decorator, :user_contracts
 
     self.base_controller = '::ApplicationController'
     self.user_model = '::User'
     self.user_decorator = '::Pragma::Devise::User::Decorator'
+    self.user_contracts = {
+      create: '::Pragma::Devise::User::Contract::Create',
+      update: '::Pragma::Devise::User::Contract::Update'
+    }
 
     class << self
       # Yields the module for configuration.
