@@ -84,10 +84,10 @@ Pragma::Devise provides the following operations:
 
 | Resource | Operations |
 | -------- | ---------- |
-| Token | <ul><li>Create</li></ul> |
-| User | <ul><li>Index</li><li>Show</li><li>Create</li><li>Update</li><li>Destroy</li></ul> |
-| Confirmation | <ul><li>Create</li><li>Update</li></ul> |
-| Recovery | <ul><li>Create</li><li>Update</li></ul> |
+| [Token](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise/token) | Create |
+| [User](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise/user) | Index, Show, Create, Update, Destroy |
+| [Confirmation](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise/confirmation) | Create, Update |
+| [Recovery](https://github.com/pragmarb/pragma-devise/tree/master/app/resources/pragma/devise/recovery) | Create, Update |
 
 To use any of them, simply inherit from the Pragma::Devise operation in your own app, e.g.:
 
