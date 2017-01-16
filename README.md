@@ -27,7 +27,7 @@ Next, follow the [Devise installation instructions](https://github.com/plataform
 make sure to skip the generation of any routes:
 
 ```ruby
-devise_for :uers, skip: :all
+devise_for :users, skip: :all
 ```
 
 **NOTE:** By default, Devise will try to link to your backend for the confirmation and password
@@ -69,28 +69,70 @@ Or install it yourself as:
 $ gem install pragma-devise
 ```
 
-Now, to use the engine, simply mount it in your `routes.rb`:
-
-```ruby
-mount Pragma::Devise::Engine => '/'
-```
-
 If you want to override any of the gem's defaults, you can change them by creating an initializer
 (e.g. `config/initializers/pragma_devise.rb`). Here are the defaults:
 
 ```ruby
 Pragma::Devise.configure do |config|
-  config.user_model = '::User'
-  config.user_decorator = '::Pragma::Devise::User::Decorator'
   config.base_controller = '::ApplicationController'
-  config.user_contracts = {
-    create: '::Pragma::Devise::User::Contract::Create',
-    update: '::Pragma::Devise::User::Contract::Update'
-  }
 end
 ```
 
-## Usage
+## Creating operations
+
+Pragma::Devise provides the following operations:
+
+| Resource | Operations |
+| Token | <ul><li>Create</li></ul> |
+| User | <ul><li>Index</li><li>Show</li><li>Create</li><li>Update</li><li>Destroy</li></ul> |
+| Confirmation | <ul><li>Create</li><li>Update</li></ul> |
+| Recovery | <ul><li>Create</li><li>Update</li></ul> |
+
+To use any of them, simply inherit from the Pragma::Devise operation in your own app, e.g.:
+
+```ruby
+module API
+  module V1
+    module User
+      module Operation
+        class Create < Pragma::Devise::User::Operation::Create
+        end
+      end
+    end
+  end
+end
+```
+
+Then inherit from the resource controller:
+
+```ruby
+module API
+  module V1
+    class UsersController < Pragma::Devise::UsersController
+    end
+  end
+end
+```
+
+And finally, route to your new operation:
+
+```ruby
+# frozen_string_literal: true
+Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: %i(create)
+    end
+  end
+end
+```
+
+This will create a signup endpoint at `POST /api/v1/users`.
+
+If you want to override the policy, decorator or contract used by the operation, you can simply
+create the relevant classes and Pragma will pick them up automatically.
+
+## Authenticating users
 
 After you have configured the gem, you can authenticate users by including
 `Pragma::Devise::Operation::Authenticable` in your operations and installing the
