@@ -1,6 +1,7 @@
 module API
   module V1
-    class TokensController < Pragma::Devise::TokensController
+    class TokensController < ApplicationController
+      include Pragma::Rails::ResourceController
     end
   end
 end

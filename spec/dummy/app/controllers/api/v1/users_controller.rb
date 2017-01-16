@@ -1,6 +1,7 @@
 module API
   module V1
-    class UsersController < Pragma::Devise::UsersController
+    class UsersController < ApplicationController
+      include Pragma::Rails::ResourceController
     end
   end
 end

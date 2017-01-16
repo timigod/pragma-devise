@@ -7,6 +7,8 @@ module Pragma
           include Pragma::Devise::Operation::Authenticable
           include Pragma::Devise::Operation::Defaults
 
+          include Pragma::Devise::User::Operation::Defaults
+
           def self.inherited(klass)
             super
             klass.before :authenticate_user

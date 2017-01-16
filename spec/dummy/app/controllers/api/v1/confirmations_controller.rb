@@ -1,6 +1,7 @@
 module API
   module V1
-    class ConfirmationsController < Pragma::Devise::ConfirmationsController
+    class ConfirmationsController < ApplicationController
+      include Pragma::Rails::ResourceController
     end
   end
 end
