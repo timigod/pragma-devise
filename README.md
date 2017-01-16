@@ -53,8 +53,6 @@ You should also override `current_user` in your base controller, e.g.:
 
 ```ruby
 class ApplicationController < ActionController::Base
-  protected
-
   def current_user
     pragma_devise_authenticate User
   end
