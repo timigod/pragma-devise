@@ -6,6 +6,12 @@ module Pragma
         class Create < Pragma::Operation::Base
           include Pragma::Devise::Operation::Defaults
 
+          class << self
+            def contract_klass
+              super || Pragma::Devise::Confirmation::Contract::Create
+            end
+          end
+
           def call
             validate! OpenStruct.new
 

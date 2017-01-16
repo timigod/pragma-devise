@@ -4,13 +4,16 @@ module Pragma
     module User
       module Operation
         class Update < Pragma::Operation::Update
-          include Pragma::Devise::Operation::Defaults
           include Pragma::Devise::Operation::Authenticable
-          include Pragma::Devise::User::Operation::Defaults
+          include Pragma::Devise::Operation::Defaults
 
           before :authenticate_user
 
-          contract Pragma::Devise.user_contracts[:update].to_s.constantize
+          class << self
+            def contract_klass
+              super || Pragma::Devise::User::Contract::Update
+            end
+          end
         end
       end
     end

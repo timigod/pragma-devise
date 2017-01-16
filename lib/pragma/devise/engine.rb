@@ -8,9 +8,10 @@ module Pragma
         Pragma::Devise.base_controller.constantize.tap do |klass|
           klass.include Knock::Authenticable
           klass.class_eval <<~RUBY
-            def current_#{Pragma::Devise.user_model.constantize.to_s.underscore}
+            def pragma_devise_authenticate(model)
+              #binding.pry
               begin
-                Knock::AuthToken.new(token: token).entity_for(Pragma::Devise.user_model.constantize)
+                Knock::AuthToken.new(token: token).entity_for(model)
               rescue ActiveRecord::RecordNotFound, JWT::DecodeError
                 nil
               end

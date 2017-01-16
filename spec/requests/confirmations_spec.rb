@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 RSpec.describe '/confirmations' do
-  include Pragma::Devise::Engine.routes.url_helpers
-
   describe 'POST /' do
-    subject { -> { post confirmations_path, body.to_json } }
+    subject { -> { post api_v1_confirmations_path, body.to_json } }
 
     context 'when the email is valid' do
       let(:user) { create(:user, confirmed_at: nil) }
@@ -44,7 +42,7 @@ RSpec.describe '/confirmations' do
   end
 
   describe 'PUT /:id' do
-    subject { -> { put confirmation_path(id: confirmation_token) } }
+    subject { -> { put api_v1_confirmation_path(id: confirmation_token) } }
 
     context 'when the confirmation token is valid' do
       let(:user) { create(:user, confirmed_at: nil) }

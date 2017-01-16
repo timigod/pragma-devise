@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Pragma
   module Devise
     module Operation
@@ -9,7 +10,7 @@ module Pragma
           klass.include InstanceMethods
         end
 
-        module InstanceMethods
+        module InstanceMethods # :nodoc:
           # If no current user was passed to the operation, responds with 401 Unauthorized and an
           # error payload and aborts the operation.
           def authenticate_user

@@ -4,9 +4,8 @@ module Pragma
     module User
       module Operation
         class Show < Pragma::Operation::Show
-          include Pragma::Devise::Operation::Defaults
           include Pragma::Devise::Operation::Authenticable
-          include Pragma::Devise::User::Operation::Defaults
+          include Pragma::Devise::Operation::Defaults
 
           before :authenticate_user
         end

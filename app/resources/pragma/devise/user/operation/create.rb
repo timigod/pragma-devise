@@ -5,9 +5,12 @@ module Pragma
       module Operation
         class Create < Pragma::Operation::Create
           include Pragma::Devise::Operation::Defaults
-          include Pragma::Devise::User::Operation::Defaults
 
-          contract Pragma::Devise.user_contracts[:create].to_s.constantize
+          class << self
+            def contract_klass
+              super || Pragma::Devise::User::Contract::Create
+            end
+          end
         end
       end
     end

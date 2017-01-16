@@ -6,6 +6,12 @@ module Pragma
         class Update < Pragma::Operation::Base
           include Pragma::Devise::Operation::Defaults
 
+          class << self
+            def contract_klass
+              super || Pragma::Devise::Recovery::Contract::Update
+            end
+          end
+
           def call
             user = self.class.model_klass.reset_password_by_token(
               reset_password_token: params[:id],
