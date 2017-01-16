@@ -133,6 +133,9 @@ This will create a signup endpoint at `POST /api/v1/users`.
 If you want to override the policy, decorator or contract used by the operation, you can simply
 create the relevant classes and Pragma will pick them up automatically.
 
+While this inheritance model is a bit more complex to set up, it provides maximum flexibility and
+also allows you to have multiple authenticating models at the same time.
+
 ## Authenticating users
 
 After you have configured the gem, you can authenticate users by including
