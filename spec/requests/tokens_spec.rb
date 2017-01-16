@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 RSpec.describe '/tokens' do
-  include Pragma::Devise::Engine.routes.url_helpers
-
   describe 'POST /' do
-    subject { -> { post tokens_path, credentials.to_json } }
+    subject { -> { post api_v1_tokens_path, credentials.to_json } }
 
     context 'with valid credentials' do
       let(:user) { create(:user) }

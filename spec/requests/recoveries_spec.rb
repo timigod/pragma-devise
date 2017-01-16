@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 RSpec.describe '/recoveries' do
-  include Pragma::Devise::Engine.routes.url_helpers
-
   describe 'POST /' do
-    subject { -> { post recoveries_path, body.to_json } }
+    subject { -> { post api_v1_recoveries_path, body.to_json } }
 
     context 'when the email is valid' do
       let(:user) { create(:user) }
@@ -44,7 +42,7 @@ RSpec.describe '/recoveries' do
   end
 
   describe 'PUT /:id' do
-    subject { -> { put recovery_path(id: recovery_token), body.to_json } }
+    subject { -> { put api_v1_recovery_path(id: recovery_token), body.to_json } }
 
     context 'when the recovery token is valid and a password is provided' do
       let(:user) { create(:user) }

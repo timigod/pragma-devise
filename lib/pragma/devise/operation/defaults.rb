@@ -2,21 +2,19 @@
 module Pragma
   module Devise
     module Operation
-      # Provides default configuration for Pragma::Devise operations.
-      #
-      # @author Alessandro Desantis
-      module Defaults # :nodoc:
-        def self.included(base)
-          base.include Pragma::Operation::Defaults
-          base.extend ClassMethods
+      module Defaults
+        def self.included(klass)
+          klass.include Pragma::Operation::Defaults
+          klass.extend ClassMethods
         end
 
         module ClassMethods # :nodoc:
-          # Returns the +user_model+ configuration option.
-          #
-          # @return [Class]
-          def model_klass
-            Pragma::Devise.user_model.constantize
+          def decorator_klass
+            super || Pragma::Devise::User::Decorator
+          end
+
+          def policy_klass
+            super || Pragma::Devise::User::Policy
           end
         end
       end

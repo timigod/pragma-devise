@@ -3,7 +3,7 @@ module Pragma
   module Devise
     module Recovery
       module Contract
-        class Complete < Pragma::Contract::Base
+        class Update < Pragma::Contract::Base
           property :password
 
           validation do
