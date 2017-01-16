@@ -83,6 +83,7 @@ end
 Pragma::Devise provides the following operations:
 
 | Resource | Operations |
+| -------- | ---------- |
 | Token | <ul><li>Create</li></ul> |
 | User | <ul><li>Index</li><li>Show</li><li>Create</li><li>Update</li><li>Destroy</li></ul> |
 | Confirmation | <ul><li>Create</li><li>Update</li></ul> |
