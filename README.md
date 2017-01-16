@@ -49,6 +49,21 @@ Next, follow the [Knock installation instructions](https://github.com/plataforma
 don't need to include `Knock::Authenticable` in your controller: it will be done for you by the
 engine.
 
+You should also override `current_user` in your base controller, e.g.:
+
+```ruby
+class ApplicationController < ActionController::Base
+  protected
+
+  def current_user
+    pragma_devise_authenticate User
+  end
+end
+```
+
+This is needed because the gem does not know how you're going to authenticate your users from the
+JWT.
+
 ### Pragma::Devise
 
 Add this line to your application's Gemfile:
