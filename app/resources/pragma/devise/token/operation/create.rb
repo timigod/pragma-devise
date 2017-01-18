@@ -15,9 +15,9 @@ module Pragma
           def call
             validate! OpenStruct.new
 
-            user = self.class.model_klass.find_for_authentication(email: params[:email])
+            context.user = self.class.model_klass.find_for_authentication(email: params[:email])
 
-            unless user && user.valid_password?(params[:password])
+            unless context.user && context.user.valid_password?(params[:password])
               respond_with!(
                 status: :unprocessable_entity,
                 resource: {
@@ -27,21 +27,21 @@ module Pragma
               )
             end
 
-            unless user.active_for_authentication?
+            unless context.user.active_for_authentication?
               respond_with!(
                 status: :unauthorized,
                 resource: {
-                  error_type: user.inactive_message,
+                  error_type: context.user.inactive_message,
                   error_message: I18n.t(
-                    "devise.failure.#{user.inactive_message}",
+                    "devise.failure.#{context.user.inactive_message}",
                     default: 'You cannot authenticate at this moment.'
                   )
                 }
               )
             end
 
-            token = Knock::AuthToken.new payload: { sub: user.id }
-            respond_with status: :created, resource: { token: token.token }
+            context.token = Knock::AuthToken.new payload: { sub: context.user.id }
+            respond_with status: :created, resource: { token: context.token.token }
           end
         end
       end
