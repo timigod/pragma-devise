@@ -15,17 +15,7 @@ module Pragma
           def call
             validate! OpenStruct.new
 
-            context.user = self.class.model_klass.find_for_authentication(email: params[:email])
-
-            unless context.user && context.user.valid_password?(params[:password])
-              respond_with!(
-                status: :unprocessable_entity,
-                resource: {
-                  error_type: :invalid_credentials,
-                  error_message: 'The credentials you have provided are not valid.'
-                }
-              )
-            end
+            context.user = find_user_for_authentication
 
             unless context.user.active_for_authentication?
               respond_with!(
@@ -42,6 +32,22 @@ module Pragma
 
             context.token = Knock::AuthToken.new payload: { sub: context.user.id }
             respond_with status: :created, resource: { token: context.token.token }
+          end
+
+          protected
+
+          def find_user_for_authentication
+            self.class.model_klass.find_for_authentication(email: params[:email]).tap do |user|
+              unless user && user.valid_password?(params[:password])
+                respond_with!(
+                  status: :unprocessable_entity,
+                  resource: {
+                    error_type: :invalid_credentials,
+                    error_message: 'The credentials you have provided are not valid.'
+                  }
+                )
+              end
+            end
           end
         end
       end
