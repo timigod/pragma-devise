@@ -38,11 +38,11 @@ backend and complete the user confirmation and password reset processes.
 
 ### Knock
 
-Add this line to your application's Gemfile (the fork is required until Knock approves
-[our PR](https://github.com/nsarno/knock/pull/133)):
+Add this line to your application's Gemfile (the fork is required until Knock releases a version on Rubygems with this
+[PR](https://github.com/nsarno/knock/pull/133)):
 
 ```ruby
-gem 'knock', github: 'alessandro1997/knock', branch: 'specific-rescue'
+gem 'knock', github: 'nsarno/knock', branch: 'master'
 ```
 
 Next, follow the [Knock installation instructions](https://github.com/plataformatec/devise). You
