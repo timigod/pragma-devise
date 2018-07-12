@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.2', '< 6'
 
   s.add_dependency 'pragma-rails', '~> 1.0'
+  s.add_dependency 'dry-types', '0.9.0'
   s.add_dependency 'knock', '~> 2.0'
   s.add_dependency 'devise', '~> 4.2'
 
