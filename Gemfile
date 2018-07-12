@@ -15,5 +15,6 @@ gem 'factory_girl_rails'
 gem 'database_cleaner'
 gem 'faker'
 gem 'pry-rails'
+gem 'dry-types', '1.1.0'
 
 gem 'knock', github: 'alessandro1997/knock', branch: 'specific-rescue'
